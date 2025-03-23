@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Navigate  } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Dashboard = ({ auth: { user, loading, isAuthenticated } }) => {
   if (!isAuthenticated) {
-    return <Redirect to="/login" />;
+    return <Navigate  to="/login" />;
   }
 
   // Redirect to appropriate dashboard based on user role
   if (user && !loading) {
     if (user.role === 'student') {
-      return <Redirect to="/student-dashboard" />;
+      return <Navigate  to="/student-dashboard" />;
     } else if (user.role === 'parent') {
-      return <Redirect to="/parent-dashboard" />;
+      return <Navigate  to="/parent-dashboard" />;
     } else if (user.role === 'admin') {
-      return <Redirect to="/admin-dashboard" />;
+      return <Navigate  to="/admin-dashboard" />;
     }
   }
 

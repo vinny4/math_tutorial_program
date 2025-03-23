@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -29,8 +30,22 @@ const App = () => {
         <div className="App">
           <Navbar />
           <Alert />
-          <Switch>
-            <Route exact path="/" component={Landing} />
+          {/*<Switch>*/}
+          <Route>
+            <Route exact path="/" element={<Landing />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/dashboard" element={<Navigate component={Dashboard} />} />
+            <Route exact path="/student-dashboard" element={<Navigate component={StudentDashboard} />} />
+            <Route exact path="/parent-dashboard" element={<Navigate component={ParentDashboard} />} />
+            <Route exact path="/admin-dashboard" element={<Navigate component={AdminDashboard} />} />
+            <Route exact path="/content" element={<Navigate component={ContentList} />} />
+            <Route exact path="/content/:id" element={<Navigate component={ContentDetail} />} />
+            <Route exact path="/progress/:userId" element={<Navigate component={ProgressReport} />} />
+            <Route exact path="/terms" element={<Navigate component={TermManagement} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+
+            {/*<Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -41,8 +56,9 @@ const App = () => {
             <PrivateRoute exact path="/content/:id" component={ContentDetail} />
             <PrivateRoute exact path="/progress/:userId" component={ProgressReport} />
             <PrivateRoute exact path="/terms" component={TermManagement} />
-            <Redirect to="/" />
-          </Switch>
+            <Redirect to="/" />*/}
+          </Route>
+          {/*</Switch>*/}
         </div>
       </Router>
     </Provider>
