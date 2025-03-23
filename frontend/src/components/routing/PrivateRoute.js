@@ -3,7 +3,7 @@ import { Route, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Navigate = ({ 
+const PrivateRouteComponent = ({ 
   component: Component, 
   auth: { isAuthenticated, loading },
   role,
@@ -33,12 +33,12 @@ const Navigate = ({
   />
 );
 
-Navigate.propTypes = {
+PrivateRouteComponent.propTypes = {
   auth: PropTypes.object.isRequired,
   role: PropTypes.string
 };
 
-Navigate.defaultProps = {
+PrivateRouteComponent.defaultProps = {
   role: 'any'
 };
 
@@ -46,4 +46,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(Navigate);
+export default connect(mapStateToProps)(PrivateRouteComponent);

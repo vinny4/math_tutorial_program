@@ -85,3 +85,21 @@ export const getSuggestions = userId => async dispatch => {
     });
   }
 };
+
+// Get student progress
+export const getStudentProgress = userId => async dispatch => {
+  try {
+    const res = await axios.get(`/api/progress/student/${userId}`);
+
+    dispatch({
+      type: GET_PROGRESS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: PROGRESS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+

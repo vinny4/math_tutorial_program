@@ -91,3 +91,20 @@ export const getTermTopics = id => async dispatch => {
     });
   }
 };
+
+// Delete a term
+export const deleteTerm = (id) => async dispatch => {
+  try {
+    await axios.delete(`/api/terms/${id}`);
+
+    dispatch(setAlert('Term deleted', 'success'));
+
+    // Refresh term list after deletion
+    dispatch(getTerms());
+  } catch (err) {
+    dispatch({
+      type: TERM_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
